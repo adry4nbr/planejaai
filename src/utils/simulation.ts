@@ -1,4 +1,4 @@
-import type { SimulationFormData } from '@/date/simulation'
+import type { SimulationFormData } from '@/data/simulation'
 
 import { parseCurrency } from './currency'
 

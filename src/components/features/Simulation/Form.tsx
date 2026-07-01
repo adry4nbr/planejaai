@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { type SimulationFormData, simulationFormSteps } from '@/date/simulation'
+import { type SimulationFormData, simulationFormSteps } from '@/data/simulation'
 import { useSimulationStorage } from '@/hooks/useSimulationStorage'
 
 import { FormStep } from './FormStep'
