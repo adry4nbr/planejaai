@@ -21,3 +21,7 @@ export function parseCurrency(value: string | undefined | null): number {
   if (!value) return 0
   return parseFloat(value.replace(/\./g, '').replace(',', '.').replace('R$', '')) || 0
 }
+
+export function formatCurrency(value: number): string {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
