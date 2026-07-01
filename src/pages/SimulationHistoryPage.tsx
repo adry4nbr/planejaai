@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import type { SimulationRecord } from '@/data/simulation'
 import { useSimulationStorage } from '@/hooks/useSimulationStorage'
-import { parseCurrency, formatCurrency } from '@/utils/currency'
+import { formatCurrency, parseCurrency } from '@/utils/currency'
 
 export function SimulationHistoryPage() {
   const { getAllSimulations, deleteSimulation } = useSimulationStorage()
@@ -32,18 +32,20 @@ export function SimulationHistoryPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Histórico de simulações</h1>
-        <p className="mt-2 text-muted-foreground">Acompanhe o histórico de seus planos financeiros.</p>
+        <h1 className="text-foreground text-3xl font-bold">Histórico de simulações</h1>
+        <p className="text-muted-foreground mt-2">
+          Acompanhe o histórico de seus planos financeiros.
+        </p>
       </div>
 
       <div className="flex flex-col gap-4">
         {simulations.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <Target className="h-12 w-12 text-muted-foreground/50 mb-4" />
+            <Target className="text-muted-foreground/50 mb-4 h-12 w-12" />
             <p className="text-muted-foreground">Você ainda não possui simulações salvas.</p>
-            <Link 
-              to="/" 
-              className="mt-4 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+            <Link
+              to="/"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 rounded-lg px-4 py-2 text-sm font-semibold"
             >
               Fazer nova simulação
             </Link>
@@ -55,49 +57,59 @@ export function SimulationHistoryPage() {
             const monthlySaving = goalAmountNum / goalDeadlineNum
 
             return (
-              <div 
-                key={sim.id} 
-                className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-2xl bg-card p-6 shadow-sm border border-border/50"
+              <div
+                key={sim.id}
+                className="bg-card border-border/50 flex flex-col items-start justify-between gap-6 rounded-2xl border p-6 shadow-sm sm:flex-row sm:items-center"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                    <Target className="h-6 w-6 text-primary" />
+                  <div className="bg-primary/10 flex h-12 w-12 items-center justify-center rounded-xl">
+                    <Target className="text-primary h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">{sim.goalName}</h3>
-                    <span className="text-xs text-muted-foreground">{formatDate(sim.createdAt)}</span>
+                    <h3 className="text-foreground font-semibold">{sim.goalName}</h3>
+                    <span className="text-muted-foreground text-xs">
+                      {formatDate(sim.createdAt)}
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-wrap sm:flex-nowrap items-center justify-between gap-6 px-4">
+                <div className="flex flex-1 flex-wrap items-center justify-between gap-6 px-4 sm:flex-nowrap">
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">Custo da meta</span>
-                    <span className="font-semibold text-foreground">{sim.goalAmount}</span>
+                    <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                      Custo da meta
+                    </span>
+                    <span className="text-foreground font-semibold">{sim.goalAmount}</span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">Prazo</span>
-                    <span className="font-semibold text-foreground">{sim.goalDeadline} meses</span>
+                    <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                      Prazo
+                    </span>
+                    <span className="text-foreground font-semibold">{sim.goalDeadline} meses</span>
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">Economia mensal</span>
-                    <span className="font-semibold text-foreground">{formatCurrency(monthlySaving)}</span>
+                    <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                      Economia mensal
+                    </span>
+                    <span className="text-foreground font-semibold">
+                      {formatCurrency(monthlySaving)}
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
-                  <button 
+                <div className="flex w-full items-center justify-end gap-3 sm:w-auto">
+                  <button
                     onClick={() => handleDelete(sim.id)}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg text-red-500 hover:bg-red-500/10 transition-colors"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg text-red-500 transition-colors hover:bg-red-500/10"
                     title="Excluir simulação"
                   >
                     <Trash2 className="h-5 w-5" />
                   </button>
-                  
+
                   <Link
                     to={`/resultado/${sim.id}`}
-                    className="flex h-10 items-center gap-2 rounded-lg border border-border bg-transparent px-4 text-sm font-semibold text-foreground hover:bg-accent transition-colors"
+                    className="border-border text-foreground hover:bg-accent flex h-10 items-center gap-2 rounded-lg border bg-transparent px-4 text-sm font-semibold transition-colors"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Ver detalhes
