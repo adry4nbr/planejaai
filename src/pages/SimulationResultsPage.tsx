@@ -47,19 +47,19 @@ export function SimulationResultsPage() {
           <Card
             icon={Wallet}
             label="Renda mensal"
-            value={data.income}
+            value={`R$ ${data.income}`}
             subtitle={'Renda total bruta por mês'}
           />
           <Card
             icon={CreditCardIcon}
             label="Custos Fixos de Vida"
-            value={data.expenses}
+            value={`R$ ${data.expenses}`}
             subtitle={'Gastos essenciais por mês'}
           />
           <Card
             icon={Landmark}
             label="Dívidas / Parcelas"
-            value={data.debts}
+            value={`R$ ${data.debts}`}
             subtitle={'Valor compremetido em parcelas/depósito'}
           />
         </div>

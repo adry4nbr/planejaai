@@ -1,6 +1,6 @@
 # Planej.ai
 
-🚀 **Deploy da aplicação:** [Insira o link do deploy aqui]
+🚀 **Deploy da aplicação:** [Planejaai](https://planejaai-lake.vercel.app/)
 
 ## 1. O que o projeto faz
 
